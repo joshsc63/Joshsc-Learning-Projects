@@ -78,7 +78,7 @@ func connectToDB() *sql.DB {
 			counts++ 
 		} else {
 			// SUCCESS
-			log.Panicln("Connected to Postgres DB")
+			log.Println("Connected to Postgres DB")
 			return connection
 		}
 		
