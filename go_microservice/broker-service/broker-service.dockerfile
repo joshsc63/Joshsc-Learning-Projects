@@ -15,6 +15,10 @@ FROM alpine:latest
 
 RUN mkdir /app
 
-COPY --from=builder /app/brokerApp /app
+# Replaced by referencing app made from makefile
+#COPY --from=builder /app/brokerApp /app
+#CMD [ "/app/brokerApp" ]
 
-CMD [ "/app/brokerApp" ]
+COPY brokerApp /app
+
+CMD [ "/app/brokerApp"]
