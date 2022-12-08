@@ -63,3 +63,11 @@ services:
     volumes:
       # local copy alongside PG
       - ./db-data/mongo/:/data/db
+      
+      
+  # simulates mail server to send emails to instead of web address
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    ports:
+      - "1025:1025"
+      - "8025:8025" #localhost
