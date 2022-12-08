@@ -31,6 +31,10 @@ DB runs locally. See dir `/project/db-data` for PG generated files
 
 Connect to `localhost`
 
+### Mongo DB
+Hosts log events in the `logger-service`
+
+
 ### Kubernetes Cluster
 Make will initialize the kubernetes cluster on the local cluster
 See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/project/docker-compose.yml](docker-compose.yml) file for pods & services
