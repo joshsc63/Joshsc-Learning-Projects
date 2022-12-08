@@ -24,7 +24,7 @@ func New(dbPool *sql.DB) Models {
 	}
 }
 
-// Models is the type for this package. Note that any model that is included as a member
+// Models is the type for this package. Any model that is included as a member
 // in this type is available to us throughout the application, anywhere that the
 // app variable is used, provided that the model is also added in the New function.
 type Models struct {
@@ -198,7 +198,7 @@ func (u *User) DeleteByID(id int) error {
 	return nil
 }
 
-// Insert inserts a new user into the database, and returns the ID of the newly inserted row
+// inserts a new user into the database, and returns the ID of the newly inserted row
 func (u *User) Insert(user User) (int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
 	defer cancel()
@@ -229,7 +229,6 @@ func (u *User) Insert(user User) (int, error) {
 	return newID, nil
 }
 
-// ResetPassword is the method we will use to change a user's password.
 func (u *User) ResetPassword(password string) error {
 	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
 	defer cancel()
@@ -249,8 +248,8 @@ func (u *User) ResetPassword(password string) error {
 }
 
 // PasswordMatches uses Go's bcrypt package to compare a user supplied password
-// with the hash we have stored for a given user in the database. If the password
-// and hash match, we return true; otherwise, we return false.
+// with the hash stored for user DB. If password
+// and hash match, return true; otherwise, we return false.
 func (u *User) PasswordMatches(plainText string) (bool, error) {
 	err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(plainText))
 	if err != nil {
