@@ -22,6 +22,18 @@ services:
     deploy:
       mode: replicated
       replicas: 1 # only 1 replica since image is on port 80
+
+  mailer-service:
+    build:
+      context: ./../mailer-service
+      dockerfile: ./../mailer-service/mailer-service.dockerfile
+    restart: always
+    # port not exposed to localhost
+    deploy:
+      mode: replicated
+      replicas: 1 # only 1 replica since image is on port 80
+ 
+      
       
   authentication-service:
     build:
