@@ -15,7 +15,8 @@ import (
 const (
 	webPort = "80"
 	rpcPort = "5001"
-	mongoURL = "mongodb://mongo:27017" // defined in docker-compose
+	mongoURL = "mongodb://mongo:27017" 
+	// mongoURL = "mongodb://localhost:27017" // local test by running `go run ./cmd/api`
 	gRpcPort = "50001"
 )
 
@@ -50,21 +51,34 @@ func main () {
 	}
 	
 	// start web server
-	go app.serve()
-}
-
-// start web service
-func (app *Config) serve() {
+	//go app.serve()
+	log.Println("Starting logger service on port", webPort)
+	
 	srv := &http.Server{
 		Addr: fmt.Sprintf(":%s", webPort),
 		Handler: app.routes(),
 	}
 	
-	err := srv.ListenAndServe()
+	err = srv.ListenAndServe()
 	if err != nil {
+		log.Println(err)
 		log.Panic()
 	}
 }
+
+// start web service
+// When called... this will just start then stop.. needs to be running from main func
+//func (app *Config) serve() {
+//	srv := &http.Server{
+//		Addr: fmt.Sprintf(":%s", webPort),
+//		Handler: app.routes(),
+//	}
+//	
+//	err := srv.ListenAndServe()
+//	if err != nil {
+//		log.Panic()
+//	}
+//}
 
 func connectToMongo() (*mongo.Client, error) {
 	// create connection options
@@ -80,6 +94,8 @@ func connectToMongo() (*mongo.Client, error) {
 		log.Println("Error connecting:", err)
 		return nil, err
 	}
+	
+	log.Println("Connected to Mongo")
 	
 	return c, nil
 }
