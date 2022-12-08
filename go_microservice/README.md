@@ -23,6 +23,14 @@ To stop the cluster `make down`
 ### Navigate to UI
 Navigate to `localhost` on browser
 
+## Components
+
+### PG Database
+DB runs locally. See dir `/project/db-data` for PG generated files
+- Credentials hardcoded into docker-compose
+
+Connect to `localhost`
+
 ### Kubernetes Cluster
 Make will initialize the kubernetes cluster on the local cluster
 See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/project/docker-compose.yml](docker-compose.yml) file for pods & services
