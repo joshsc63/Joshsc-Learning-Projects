@@ -16,7 +16,10 @@ Services will deploy on a docker container on the local kubernetes cluster.
 Makefile performs go build of binary files & initializes docker containers to a kubernetes cluster
 
 1. cd project dir
-2. Run Make `make up_build`
+2. Run Make `make up_build` for backend services
+3. Run Make `make start` to start front-end
+
+if localhost port is in use... can verify & end process `lsof -i tcp:80`
 
 To stop the cluster `make down`
 

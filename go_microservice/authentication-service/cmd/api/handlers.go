@@ -73,4 +73,5 @@ func(app *Config) logRequest(name, data string) error {
 		return err
 	}
 
+	return nil 
 }
