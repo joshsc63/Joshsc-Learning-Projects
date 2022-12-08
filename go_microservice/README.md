@@ -48,3 +48,9 @@ Hosts log events in the `logger-service`
 ### Kubernetes Cluster
 Make will initialize the kubernetes cluster on the local cluster
 See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/project/docker-compose.yml](docker-compose.yml) file for pods & services
+
+## Go Packages
+
+- [https://github.com/xhit/go-simple-mail](simple-go-mail) : send email
+- [https://github.com/vanng822/go-premailer](go-premailer) : http styling email
+- [https://github.com/go-chi/chi](go-chi) : go router for HTTP services
