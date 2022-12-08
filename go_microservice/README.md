@@ -37,8 +37,8 @@ Connect to `localhost`
 ### Mongo DB
 Hosts log events in the `logger-service`
 
-Client: MongoDB Compass to connect
-URI: `mongodb://admin:password@localhost:27017/log?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`
+- Client: MongoDB Compass to connect
+- URI: `mongodb://admin:password@localhost:27017/log?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`
 
 
 ### Kubernetes Cluster
