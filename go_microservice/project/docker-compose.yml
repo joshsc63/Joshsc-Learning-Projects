@@ -23,7 +23,7 @@ services:
       mode: replicated
       replicas: 1 # only 1 replica since image is on port 80
 
-  mailer-service:
+  mail-service:
     build:
       context: ./../mail-service
       dockerfile: ./../mail-service/mail-service.dockerfile

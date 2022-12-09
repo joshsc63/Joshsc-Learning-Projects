@@ -24,6 +24,13 @@ if localhost port is in use... can verify & end process `lsof -i tcp:80`
 
 To stop the cluster `make down`
 
+### Troubleshooting
+
+If encountering error when stopping service `failed to remove network project_default: Error response from daemon: error while removing network: network project_default id ac674b25216b099c9fc70f9d1d46886f73a8f03f6a0e75bf97c01d7dc4f4155a has active endpoints`
+
+Run cmd `docker-compose down --remove-orphans`
+
+
 ### Navigate to UI
 Navigate to `localhost` on browser
 
