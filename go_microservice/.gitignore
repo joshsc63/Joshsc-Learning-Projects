@@ -1,1 +1,7 @@
 **/.DS_Store
+
+# Include files that end with "App" in directories that have a suffix of "-service"
+**/*-service/*App
+
+# Include all files in the project/db-data directory
+/project/db-data/
