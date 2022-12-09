@@ -1,10 +1,10 @@
-# Golang Microservices w/ Postgres, MongoDB
-The building blocks to Golang Microservices that includes 
+# Golang Microservices w/ Postgres, MongoDB, RabbitMQ
 
 ![ui](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/ui.png "ui")
 
 ![design](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/design.png "design")
 
+The building blocks to Golang Microservices that includes 
 
 - UI site to connect the front end to the golang backend
 - A broker service to handle & route requests
