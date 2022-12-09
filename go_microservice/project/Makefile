@@ -38,7 +38,7 @@ build_logger:
 
 build_listener:
 	@echo "Building listener binary..."
-	cd ../listener-service && env GOOS=linux CGO_ENABLED=0 go build -o ${LISTENER_BINARY} ./cmd/api
+	cd ../listener-service && env GOOS=linux CGO_ENABLED=0 go build -o ${LISTENER_BINARY} ./
 	@echo "Done!"
 
 build_auth:

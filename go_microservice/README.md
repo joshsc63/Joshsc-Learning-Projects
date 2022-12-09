@@ -39,7 +39,11 @@ Run cmd `docker-compose down --remove-orphans`
 
 
 ### Navigate to UI
+Run `make start` 
+
 Navigate to `localhost` on browser
+
+to stop: `make stop`
 
 ## Components
 
@@ -55,6 +59,8 @@ DB runs locally. See dir `/project/db-data` for PG generated files
 Connect to `localhost`
 
 ### Mongo DB
+![mongo](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/mongo.png "mongo")
+
 Hosts log events in the `logger-service`
 
 - Client: MongoDB Compass to connect
