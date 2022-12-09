@@ -6,6 +6,8 @@ The building blocks to Golang Microservices that includes
 - authentication service using PostGres for user data
 - A logger service that sends messages to MongoDB
 - Mail Service for emails
+- Listener service for Rabbit MQ messages
+- Rabbit MQ for messages
 - Postgres DB for user data
 - MongoDB for logging messages
 
@@ -51,6 +53,7 @@ Hosts log events in the `logger-service`
 - Client: MongoDB Compass to connect
 - URI: `mongodb://admin:password@localhost:27017/log?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`
 
+### Rabbit MQ
 
 ### Kubernetes Cluster
 Make will initialize the kubernetes cluster on the local cluster
@@ -61,3 +64,4 @@ See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microserv
 - [https://github.com/xhit/go-simple-mail](simple-go-mail) : send email
 - [https://github.com/vanng822/go-premailer](go-premailer) : http styling email
 - [https://github.com/go-chi/chi](go-chi) : go router for HTTP services
+- [https://github.com/rabbitmq/amqp091-go](rabbitmq-go) : rabbit MQ client
