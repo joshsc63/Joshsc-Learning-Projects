@@ -1,9 +1,9 @@
 # Golang Microservices w/ Postgres, MongoDB
 The building blocks to Golang Microservices that includes 
 
-[design]: https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/design.png "design"
+![ui](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/ui.png "ui")
 
-[ui]: https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/design.png "ui"
+![design](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/design.png "design")
 
 
 - UI site to connect the front end to the golang backend
