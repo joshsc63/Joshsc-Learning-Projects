@@ -46,6 +46,8 @@ Navigate to `localhost` on browser
 ### Mail Service
 Uses MailHog to simulate a localhost mail box vs a valid web email. See `docker-compose` - Navigate to `localhost:8025`
 
+![mailhog](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/mailhog.png "mailhog")
+
 ### PG Database
 DB runs locally. See dir `/project/db-data` for PG generated files
 - Credentials hardcoded into docker-compose
