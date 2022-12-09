@@ -10,8 +10,9 @@ The building blocks to Golang Microservices that includes
 - A broker service to handle & route requests
 - authentication service using PostGres for user data
 - A logger service that sends messages to MongoDB
+- Logger & Broker sends messages via RPC to each other
 - Mail Service for emails
-- Listener service for Rabbit MQ messages
+- Listener service for Rabbit MQ messages to send to MongoDB
 - Rabbit MQ for messages
 - Postgres DB for user data
 - MongoDB for logging messages
@@ -67,6 +68,9 @@ Hosts log events in the `logger-service`
 - URI: `mongodb://admin:password@localhost:27017/log?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`
 
 ### Rabbit MQ
+Log events are sent to RabbitMQ which then creates an entry to MondoDB from its message
+
+See listener-service
 
 ### Kubernetes Cluster
 Make will initialize the kubernetes cluster on the local cluster
