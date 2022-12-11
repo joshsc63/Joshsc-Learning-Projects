@@ -86,10 +86,11 @@ func main() {
 //	}
 //}
 
-func (app *Config) rpcListen() {
+func (app *Config) rpcListen() error {
 	log.Println("Starting RPC server on port: ", rpcPort)
 	listen, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%s", rpcPort)) // open IP
 	if err != nil {
+		log.Println("Error listening to rpcPort:", rpcPort)
 		return err
 	}
 	defer listen.Close()
@@ -102,6 +103,8 @@ func (app *Config) rpcListen() {
 		}
 		go rpc.ServeConn(rpcConn)
 	}
+
+	return nil
 }
 
 func connectToMongo() (*mongo.Client, error) {

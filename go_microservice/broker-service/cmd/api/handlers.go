@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"net/rpc"
 )
 
 // jsonResponse in helpers.go
@@ -63,7 +64,8 @@ func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 		app.authenticate(w, requestPayload.Auth)
 	case "log":
 		//app.logItem(w, requestPayload.Log) // log to mongoDB
-		app.logEventRabbit(w, requestPayload.Log)
+		//app.logEventRabbit(w, requestPayload.Log) // log via rabbitmq
+		app.logItemRPC(w, requestPayload.Log) // log via RPC
 	case "mail":
 		app.sendMail(w, requestPayload.Mail)
 	default:
@@ -238,4 +240,41 @@ func (app *Config) pushToQueue(name, msg string) error {
 	}
 
 	return nil
+}
+
+// RPC
+type RPCPayload struct {
+	Name string
+	Data string
+}
+
+func (app *Config) logItemRPC(w http.ResponseWriter, l LogPayload) {
+	// rpc client
+	client, err := rpc.Dial("tcp", "logger-service:5001")
+	if err != nil {
+		app.errorJSON(w, err)
+		return // cant go any further
+	}
+
+	// type that remote RPC server expects
+	rpcPayload := RPCPayload{
+		Name: l.Name,
+		Data: l.Data,
+	}
+
+	// result back
+	var result string
+	err = client.Call("RPCServer.LogInfo", rpcPayload, &result)
+	if err != nil {
+		app.errorJSON(w, err)
+		return // cant go any further
+	}
+
+	// write back
+	payload := jsonResponse{
+		Error:   false,
+		Message: result,
+	}
+
+	app.writeJSON(w, http.StatusAccepted, payload)
 }
