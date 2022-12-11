@@ -48,6 +48,28 @@ to stop: `make stop`
 
 ## Components
 
+### Logger Service
+Send log event via JSON / RPC / gRPC to MongoDB
+
+`broker-service` handler file has switch statement for events. Log contains method calls for different messaging type
+```
+	case "log":
+		//app.logItem(w, requestPayload.Log)        // log to mongoDB
+		//app.logEventRabbit(w, requestPayload.Log) // log via rabbitmq
+		//app.logItemRPC(w, requestPayload.Log)     // log via RPC
+		app.logItemgRPC(w, requestPayload.Log)      // log via gRPC
+```
+
+#### gRPC
+gRPC Reqs:
+- `brew install protobuf`
+- `go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27`
+- `go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2`
+
+`logger-service/logs/logs.proto` proto3 file for gRPC
+
+- protoc auto-gen pg.go file created via `protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative logs.proto`
+
 ### Mail Service
 Uses MailHog to simulate a localhost mail box vs a valid web email. See `docker-compose` - Navigate to `localhost:8025`
 
@@ -82,3 +104,6 @@ See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microserv
 - [https://github.com/vanng822/go-premailer](go-premailer) : http styling email
 - [https://github.com/go-chi/chi](go-chi) : go router for HTTP services
 - [https://github.com/rabbitmq/amqp091-go](rabbitmq-go) : rabbit MQ client
+- [https://github.com/grpc/grpc-go](gRPC-go) : gRPC messages 
+- [https://github.com/golang/protobuf](gRPC-go) : Protocol Buffer
+
