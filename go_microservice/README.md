@@ -56,8 +56,7 @@ Send log event via JSON / RPC / gRPC to MongoDB
 	case "log":
 		//app.logItem(w, requestPayload.Log)        // log to mongoDB
 		//app.logEventRabbit(w, requestPayload.Log) // log via rabbitmq
-		//app.logItemRPC(w, requestPayload.Log)     // log via RPC
-		app.logItemgRPC(w, requestPayload.Log)      // log via gRPC
+		app.logItemRPC(w, requestPayload.Log)     // log via RPC
 ```
 
 #### gRPC
