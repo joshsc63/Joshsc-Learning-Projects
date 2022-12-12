@@ -93,9 +93,27 @@ Log events are sent to RabbitMQ which then creates an entry to MondoDB from its 
 
 See listener-service
 
-### Kubernetes Cluster
-Make will initialize the kubernetes cluster on the local cluster
-See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/project/docker-compose.yml](docker-compose.yml) file for pods & services
+### Docker
+
+#### Tag/Push Image to Docker Hub
+
+- `docker login`
+- `docker build -f logger-service.dockerfile -t joshsc63/logger-service:1.0.0 .`
+- `docker push joshsc63/logger-service:1.0.0`
+
+#### Docker Swarm
+Used to host containers for a light weight option vs K8S. Docker Storm orchestrates container node's instances
+
+File: `/project/swarm.yml`
+
+- `docker swarm init` init 1 worker
+- `docker stack deploy -c swarm.yml myapp` deploy to docker swarm
+- `docker service ls` show services running
+ 
+
+### Local Docker Cluster
+`make up` will initialize the local cluster 
+See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/project/docker-compose.yml](docker-compose.yml) file for containers & services
 
 ## Go Packages
 

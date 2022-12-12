@@ -4,4 +4,4 @@
 **/*-service/*App
 
 # Include all files in the project/db-data directory
-!/project/db-data/**
+project/db-data/**/*
