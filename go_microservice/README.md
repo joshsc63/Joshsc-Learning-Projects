@@ -6,7 +6,7 @@
 
 The building blocks to Golang Microservices that includes 
 
-- UI site to connect the front end to the golang backend
+- UI site to connect the front end to the golang backend using caddy as web server
 - A broker service to handle & route requests
 - authentication service using PostGres for user data
 - A logger service that sends messages to MongoDB
@@ -47,6 +47,24 @@ Navigate to `localhost` on browser
 to stop: `make stop`
 
 ## Components
+
+### Front End Web Server
+Uses caddy docker image as webserver
+File: `/project/Caddyfile`
+
+Modify `/etc/hosts` file to add backend route
+```
+  1 ##
+  2 # Host Database
+  3 #
+  4 # localhost is used to configure the loopback interface
+  5 # when the system is booting.  Do not change this entry.
+  6 ##
+  7 127.0.0.1   localhost backend
+  8 255.255.255.255 broadcasthost
+  9 ::1             localhost backend
+```
+
 
 ### Logger Service
 Send log event via JSON / RPC / gRPC to MongoDB
@@ -106,12 +124,20 @@ Used to host containers for a light weight option vs K8S. Docker Storm orchestra
 
 File: `/project/swarm.yml`
 
+CMDs
 - `docker swarm init` init 1 worker
 - `docker stack deploy -c swarm.yml myapp` deploy to docker swarm
 - `docker service ls` show services running
+- `docker service scale myapp_listener-service=3` scale to # of instances
+- `docker stack rm myapp` remove swarm
+- `docker swarm leave --force` leave swarm
+ 
+ Updating Service
+ - Build new tagged version of image `docker build -f logger-service.dockerfile -t joshsc63/logger-service:1.0.1 .` -> `docker push joshsc63/logger-service:1.0.1`
+ - Update version in docker swarm `docker service update --image joshsc63/logger-service:1.0.1 myapp_logger-service`
  
 
-### Local Docker Cluster
+#### Local Docker Cluster
 `make up` will initialize the local cluster 
 See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/project/docker-compose.yml](docker-compose.yml) file for containers & services
 
