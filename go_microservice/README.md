@@ -65,6 +65,65 @@ Modify `/etc/hosts` file to add backend route
   9 ::1             localhost backend
 ```
 
+### Web Hosting w/ Linode
+Docker swarm instances are hosted using Linode
+
+- Ubuntu 20.2
+- Labels: `node-1` & `node-2` (two nodes)
+- SSH Key: pubkey
+
+#### Linode Setup
+- ssh into node-1/2 
+- Add user `adduser joshsc63` -> enter PW -> blank default vals
+- `usermod -aG sudo joshsc63`
+- Setup ubuntu basic firewall `ufw allow ssh | ufw allow http | ufw allow https`
+- Open ports for services `ufw allow 2377/tcp | ufw allow 7946/tcp | ufw allow 7946/udp | ufw allow 4789/udp | ufw allow 8025/tcp` -> enable `ufw enable` -> status `ufw status`
+- login as user `ssh joshsc63@45.79.XXX.X`
+
+* Docker Install to Linode Node
+- `sudo apt-get update`
+```
+	sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+```
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+```
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+- `sudo apt-get update` -> `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
+
+* Setting Hostname
+- `sudo hostnamectl set-hostname node-1`
+- Add entries to hostfile `sudo vi /etc/hosts`
+```
+45.79.XXX.X     node-1
+45.79.XXX.XXX   node-2
+```
+
+* Adding DNS entry
+Using Go-Daddy for domain name
+
+* In DNS Records
+- Add `Type A` | `Name node-1` | `Value IP` for both nodes 
+- Add `Type A` | `Name swarm` | `Value IP` for both nodes
+- Add `TYPE C` | `Name broker` fetch reqs | `Value swarm.DOMAIN.com`
+
+- test record `ping swarm.DOMAIN.com`
+
+* Initialize Docker Swarm to Linode Nodes
+- `sudo docker swarm init --advertise-addr $IP-node-1` node1
+- Run `docker swarm join --token XXX` command returned on Node2 to have it as worker node
+
+
+
 
 ### Logger Service
 Send log event via JSON / RPC / gRPC to MongoDB
