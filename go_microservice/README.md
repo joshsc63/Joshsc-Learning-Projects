@@ -1,4 +1,4 @@
-# Golang Microservices w/ Postgres, MongoDB, RabbitMQ
+# Golang Microservices w/ gRPC, Postgres, MongoDB, RabbitMQ
 
 ![ui](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/ui1.png "ui")
 
