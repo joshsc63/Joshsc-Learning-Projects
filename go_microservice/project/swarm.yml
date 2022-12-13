@@ -15,10 +15,12 @@ services:
       - caddy_config:/config
 
   front-end:
-    image: joshsc63/front-end:1.0.0
+    image: joshsc63/front-end:1.0.1
     deploy: 
       mode: replicated
       replicas: 1
+    environment: 
+      BROKER_URL: "http://backend"
 
   broker-service:
     image: joshsc63/broker-service:1.0.1
