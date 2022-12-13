@@ -106,7 +106,8 @@
             headers: headers,
         }
         
-        fetch("http:\/\/localhost:8080/handle", body)
+        //fetch("http:\/\/localhost:8080/handle", body)
+        fetch({{print .BrokerURL "/handle"}}, body)
         .then((response) => response.json()) //convert format
         .then((data) => {
             //change content of pretag 
@@ -144,7 +145,9 @@
             headers: headers,
         }
         
-        fetch("http:\/\/localhost:8080/log-grpc", body)
+        //fetch("http:\/\/localhost:8080/log-grpc", body)
+        //fetch("http:\/\/backend/log-grpc", body)
+        fetch({{print .BrokerURL "/log-grpc"}}, body)
         .then((response) => response.json()) //convert format
         .then((data) => {
             //change content of pretag 
@@ -182,7 +185,7 @@
             headers: headers,
         }
         
-        fetch("http:\/\/localhost:8080/handle", body)
+        fetch({{print .BrokerURL "/handle"}}, body)
         .then((response) => response.json()) //convert format
         .then((data) => {
             //change content of pretag 
@@ -209,7 +212,7 @@
             method: 'POST',
         }
         
-        fetch("http:\/\/localhost:8080", body)
+        fetch({{.BrokerURL}}, body)
         .then((response) => response.json()) //convert format
         .then((data) => {
             //change content of pretag 
