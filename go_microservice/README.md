@@ -66,6 +66,9 @@ Modify `/etc/hosts` file to add backend route
 ```
 
 ### Web Hosting w/ Linode
+
+![linode](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/linode.png "linode")
+
 Docker swarm instances are hosted using Linode
 
 - Ubuntu 20.2
