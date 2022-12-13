@@ -1,8 +1,8 @@
 # Golang Microservices w/ Postgres, MongoDB, RabbitMQ
 
-![ui](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/ui.png "ui")
+![ui](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/ui1.png "ui")
 
-![design](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/design.png "design")
+![design](https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/images/design1.png "design")
 
 The building blocks to Golang Microservices that includes 
 
@@ -147,6 +147,16 @@ Same for caddy port
 - Used for caddy web server. See `project/caddyfile.production`
 - Caddy dockerfile. See `project/caddy.production.dockerfile`
 
+##### Adding Data to Linode nodes
+Normally a remote service but to add user record for auth service...
+New DB connection with host: `127.0.0.1`, port: `5432`, SSH Tunnel `ssh hostname: node-1.jyoshii.com, port: 22`
+
+Run query in `db-misc/users.sql`
+
+#### SSL
+- In `caddyfile.production`add `import security` to frontend
+- Remove port from domains `:80`
+
 ### Logger Service
 Send log event via JSON / RPC / gRPC to MongoDB
 
@@ -221,6 +231,9 @@ CMDs
 #### Local Docker Cluster
 `make up` will initialize the local cluster 
 See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microservice/project/docker-compose.yml](docker-compose.yml) file for containers & services
+
+### Kubernetes
+Uses minikube for K8S cluster
 
 ## Go Packages
 
