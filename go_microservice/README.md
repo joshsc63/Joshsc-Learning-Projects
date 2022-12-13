@@ -83,7 +83,7 @@ Docker swarm instances are hosted using Linode
 - Open ports for services `ufw allow 2377/tcp | ufw allow 7946/tcp | ufw allow 7946/udp | ufw allow 4789/udp | ufw allow 8025/tcp` -> enable `ufw enable` -> status `ufw status`
 - login as user `ssh joshsc63@45.79.XXX.X`
 
-* Docker Install to Linode Node
+##### Docker Install to Linode Node
 - `sudo apt-get update`
 ```
 	sudo apt-get install \
