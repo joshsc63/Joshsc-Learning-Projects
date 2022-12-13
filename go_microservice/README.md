@@ -102,8 +102,9 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 - `sudo apt-get update` -> `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
+- `sudo usermod -aG docker joshsc63`
 
-* Setting Hostname
+##### Setting Hostname
 - `sudo hostnamectl set-hostname node-1`
 - Add entries to hostfile `sudo vi /etc/hosts`
 ```
@@ -111,22 +112,40 @@ echo \
 45.79.XXX.XXX   node-2
 ```
 
-* Adding DNS entry
+##### Creating Docker Volume dirs
+- `sudo mkdir swarm`
+- `sudo chown joshsc63:joshsc63 swarm/`
+- `cd swarm` -> `mkdir caddy_data` -> `mkdir caddy_config`
+- create swarm file `vi swarm.yml` paste in contents from `project/swarm.production.yml`
+- `sudo docker stack deploy -c swarm.yml myapp`
+
+- Make data dirs `mkdir db-data` | `mkdir db-data/mongo` | `mkdir db-data/postgres`
+
+##### Adding DNS entry
 Using Go-Daddy for domain name
 
-* In DNS Records
+In DNS Records
 - Add `Type A` | `Name node-1` | `Value IP` for both nodes 
 - Add `Type A` | `Name swarm` | `Value IP` for both nodes
 - Add `TYPE C` | `Name broker` fetch reqs | `Value swarm.DOMAIN.com`
 
 - test record `ping swarm.DOMAIN.com`
 
-* Initialize Docker Swarm to Linode Nodes
+##### Initialize Docker Swarm to Linode Nodes
 - `sudo docker swarm init --advertise-addr $IP-node-1` node1
 - Run `docker swarm join --token XXX` command returned on Node2 to have it as worker node
 
+Note directive for Mongo/Postgres in swarm file to handle data dir possibly changing
+```
+      placement:
+        constraints:
+          - node.hostname == node-1
+```
+Same for caddy port
 
-
+##### caddy for linode site
+- Used for caddy web server. See `project/caddyfile.production`
+- Caddy dockerfile. See `project/caddy.production.dockerfile`
 
 ### Logger Service
 Send log event via JSON / RPC / gRPC to MongoDB

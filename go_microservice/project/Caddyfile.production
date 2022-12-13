@@ -21,13 +21,13 @@
 	}
 }
 
-localhost:80 {
+swarm.jyoshii.com:80 {
 	encode zstd gzip
 	import static
 
 	reverse_proxy  http://front-end:8081
 }
 
-backend:80 {
+broker.jyoshii.com:80 {
 	reverse_proxy http://broker-service:8080
 }
