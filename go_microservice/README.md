@@ -235,6 +235,11 @@ See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microserv
 ### Kubernetes
 Uses minikube for K8S cluster
 
+CMDs
+- Start: `minikube start --nodes=2`
+- Stop: `minikube stop`
+- Status: `minikube status`
+
 ## Go Packages
 
 - [https://github.com/xhit/go-simple-mail](simple-go-mail) : send email
