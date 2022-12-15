@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/alexedwards/scs/v2"
 	"github.com/joshsc63/go-website/pkg/config"
 	"github.com/joshsc63/go-website/pkg/handlers"
 	"github.com/joshsc63/go-website/pkg/render"
@@ -13,9 +15,21 @@ import (
 // const cant be changed by application
 const portNumber = ":8080"
 
+// get the template cache from app config
+var app config.AppConfig
+var session *scs.SessionManager
+
 func main() {
-	// get the template cache from app config
-	var app config.AppConfig
+	// change to true when in prod
+	app.InProduction = false
+
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	session.Cookie.Secure = app.InProduction
+
+	app.Session = session
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
@@ -27,12 +41,7 @@ func main() {
 
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandlers(repo)
-
-	// call new template cache
 	render.NewTemplates(&app) // takes in pointer, use & ref
-
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
 
 	// start web server
 	fmt.Println(fmt.Sprintf("Starting application on port %s", portNumber))

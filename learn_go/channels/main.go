@@ -25,8 +25,22 @@ func main() {
 		go checkLink(link, c) // go routine... use go infront of function calls
 	}
 
-	// receive data from channel
-	fmt.Println(<-c)
+	// receive data from channels
+	//for i := 0; i < len(links); i++ {
+	//fmt.Println(<-c)
+	//}
+
+	// infinite loop to keep checking link
+	//for {
+	//	go checkLink(<-c, c)
+	//}
+
+	// l for link
+
+	for l := range c {
+		go checkLink(l, c)
+	}
+
 }
 
 // Send data to channel:   channel <- 5    (send the value 5 into channel
@@ -37,10 +51,10 @@ func checkLink(link string, c chan string) {
 	_, err := http.Get(link) // 2 return vals... resp & error
 	if err != nil {
 		fmt.Println(link, "might be down!")
-		c <- "Might be down"
+		c <- link
 		return // exit function
 	}
 
 	fmt.Println(link, "is up!")
-	c <- "site is up"
+	c <- link
 }
