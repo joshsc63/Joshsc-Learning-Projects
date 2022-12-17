@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/joshsc63/bookings/pkg/config"
-	"github.com/joshsc63/bookings/pkg/models"
+	"github.com/joshsc63/go-website/pkg/config"
+	"github.com/joshsc63/go-website/pkg/models"
 )
 
 // REF: including template file but having to include it in the func...
@@ -100,8 +100,6 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 
 	// hold bytes in buffer
 	buf := new(bytes.Buffer)
-
-	td = AddDefaultData(td)
 
 	_ = t.Execute(buf, td)
 

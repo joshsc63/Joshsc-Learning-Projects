@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/joshsc63/bookings/pkg/config"
-	"github.com/joshsc63/bookings/pkg/handlers"
-	"github.com/joshsc63/bookings/pkg/render"
+	"github.com/joshsc63/go-website/pkg/config"
+	"github.com/joshsc63/go-website/pkg/handlers"
+	"github.com/joshsc63/go-website/pkg/render"
 )
 
 // const cant be changed by application
