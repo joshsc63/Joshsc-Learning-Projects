@@ -235,10 +235,17 @@ See [https://github.com/joshsc63/Joshsc-Learning-Projects/blob/main/go_microserv
 ### Kubernetes
 Uses minikube for K8S cluster
 
+Manifest Files: `project/k8s/`
+
 CMDs
 - Start: `minikube start --nodes=2`
 - Stop: `minikube stop`
 - Status: `minikube status`
+- Dashboard: `minikube dashboard` opens browser window
+
+#### Load Balancer
+Created: `kubectl expose deployment broker-service --type=LoadBalancer --target-port=8080`
+Tunnel: `minikube tunnel`
 
 ## Go Packages
 

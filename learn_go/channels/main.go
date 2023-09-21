@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 // Check status of websites with channels
@@ -38,7 +39,16 @@ func main() {
 	// l for link
 
 	for l := range c {
-		go checkLink(l, c)
+		//time.Sleep(5 * time.Second)
+		//go checkLink(l, c)
+
+		// function literal - unnamed function
+		go func(link string) {
+			time.Sleep(5 * time.Second)
+			checkLink(link, c)
+
+		}(l) // () to call/invoke it
+
 	}
 
 }
